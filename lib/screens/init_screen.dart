@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart'; // Import GetX
-import 'package:rfoofs/screens/favorite/favorite_screen.dart';
-import 'package:rfoofs/screens/home/home_screen.dart';
-import 'package:rfoofs/screens/profile/profile_screen.dart';
+import 'package:r4foods/screens/favorite/favorite_screen.dart';
+import 'package:r4foods/screens/home/home_screen.dart';
+import 'package:r4foods/screens/profile/profile_screen.dart';
+
 
 import '../utils/constants.dart';
 

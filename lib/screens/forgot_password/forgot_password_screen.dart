@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:rfoofs/components/no_account_text.dart';
 
+
+import '../../components/no_account_text.dart';
 import 'components/forgot_pass_form.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {

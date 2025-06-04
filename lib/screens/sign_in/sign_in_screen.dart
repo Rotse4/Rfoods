@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rfoofs/components/no_account_text.dart';
+import '../../components/no_account_text.dart';
 import '../../components/socal_card.dart';
 import '../../utils/constants.dart';
 import 'components/sign_form.dart';

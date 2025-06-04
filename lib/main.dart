@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rfoofs/screens/splash/splash_screen.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'controllers/auth_controller.dart';
 import 'controllers/cart_controller.dart';
 import 'controllers/product_controller.dart';
 import 'routes/routes.dart';
+import 'screens/splash/splash_screen.dart';
 import 'theme/theme.dart';
 
 void main() {

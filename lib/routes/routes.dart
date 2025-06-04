@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
-import 'package:rfoofs/screens/products/products_screen.dart';
-import 'package:rfoofs/screens/sign_up/sign_up_screen.dart';
+import 'package:r4foods/screens/sign_up/sign_up_screen.dart';
 
 import '../screens/cart/cart_screen.dart';
 import '../screens/complete_profile/complete_profile_screen.dart';
@@ -10,6 +9,7 @@ import '../screens/home/home_screen.dart';
 import '../screens/init_screen.dart';
 import '../screens/login_success/login_success_screen.dart';
 import '../screens/otp/otp_screen.dart';
+import '../screens/products/products_screen.dart';
 import '../screens/profile/profile_screen.dart';
 import '../screens/sign_in/sign_in_screen.dart';
 
