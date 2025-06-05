@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart'; // Import GetX
+import 'package:flutter_screenutil/flutter_screenutil.dart'; // Import flutter_screenutil
 import '../../controllers/cart_controller.dart'; // Import CartController
 import 'components/cart_card.dart';
 import 'components/check_out_card.dart';
@@ -31,7 +32,7 @@ class CartScreen extends StatelessWidget {
       ),
       body: Obx(
         () => Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: cartController.cartItems.isEmpty
               ? const Center(child: Text("Your cart is empty"))
               : ListView.builder(
@@ -42,7 +43,7 @@ class CartScreen extends StatelessWidget {
                     );
                     final quantity = cartController.cartItems[product]!;
                     return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      padding: EdgeInsets.symmetric(vertical: 10.h),
                       child: Dismissible(
                         key: Key(product.id.toString()),
                         direction: DismissDirection.endToStart,
@@ -52,10 +53,10 @@ class CartScreen extends StatelessWidget {
                           ); // Remove using controller
                         },
                         background: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          padding: EdgeInsets.symmetric(horizontal: 20.w),
                           decoration: BoxDecoration(
                             color: const Color(0xFFFFE6E6),
-                            borderRadius: BorderRadius.circular(15),
+                            borderRadius: BorderRadius.circular(15.r),
                           ),
                           child: Row(
                             children: [

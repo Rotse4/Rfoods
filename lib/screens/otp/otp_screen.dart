@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../utils/constants.dart';
 
@@ -15,11 +16,11 @@ class OtpScreen extends StatelessWidget {
       body: SizedBox(
         width: double.infinity,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: SingleChildScrollView(
             child: Column(
               children: [
-                const SizedBox(height: 16),
+                SizedBox(height: 16.h),
                 Text("OTP Verification", style: headingStyle),
                 const Text("We sent your code to +1 898 860 ***"),
                 Row(
@@ -37,7 +38,7 @@ class OtpScreen extends StatelessWidget {
                   ],
                 ),
                 const OtpForm(),
-                const SizedBox(height: 20),
+                SizedBox(height: 20.h),
                 GestureDetector(
                   onTap: () {
                     // OTP code resend

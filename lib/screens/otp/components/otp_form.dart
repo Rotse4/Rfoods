@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../utils/constants.dart';
 import '../../../controllers/auth_controller.dart';
 
@@ -22,16 +23,16 @@ class OtpForm extends StatelessWidget {
     return Form(
       child: Column(
         children: [
-          SizedBox(height: MediaQuery.of(context).size.height * 0.15),
+          SizedBox(height: 0.15.sh),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SizedBox(
-                width: 60,
+                width: 60.w,
                 child: TextFormField(
                   autofocus: true,
                   obscureText: true,
-                  style: const TextStyle(fontSize: 24),
+                  style: TextStyle(fontSize: 24.sp),
                   keyboardType: TextInputType.number,
                   textAlign: TextAlign.center,
                   decoration: otpInputDecoration,
@@ -42,11 +43,11 @@ class OtpForm extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: 60,
+                width: 60.w,
                 child: TextFormField(
                   focusNode: pin2FocusNode,
                   obscureText: true,
-                  style: const TextStyle(fontSize: 24),
+                  style: TextStyle(fontSize: 24.sp),
                   keyboardType: TextInputType.number,
                   textAlign: TextAlign.center,
                   decoration: otpInputDecoration,
@@ -57,11 +58,11 @@ class OtpForm extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: 60,
+                width: 60.w,
                 child: TextFormField(
                   focusNode: pin3FocusNode,
                   obscureText: true,
-                  style: const TextStyle(fontSize: 24),
+                  style: TextStyle(fontSize: 24.sp),
                   keyboardType: TextInputType.number,
                   textAlign: TextAlign.center,
                   decoration: otpInputDecoration,
@@ -72,11 +73,11 @@ class OtpForm extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: 60,
+                width: 60.w,
                 child: TextFormField(
                   focusNode: pin4FocusNode,
                   obscureText: true,
-                  style: const TextStyle(fontSize: 24),
+                  style: TextStyle(fontSize: 24.sp),
                   keyboardType: TextInputType.number,
                   textAlign: TextAlign.center,
                   decoration: otpInputDecoration,
@@ -90,7 +91,7 @@ class OtpForm extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: MediaQuery.of(context).size.height * 0.15),
+          SizedBox(height: 0.15.sh),
           ElevatedButton(
             onPressed: () {
               final otpCode = authController.otp.join();

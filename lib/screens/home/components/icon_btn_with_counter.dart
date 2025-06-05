@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart'; // Import GetX
+import 'package:flutter_screenutil/flutter_screenutil.dart'; // Import flutter_screenutil
 import '../../../utils/constants.dart';
 import '../../../controllers/cart_controller.dart'; // Import CartController
 
@@ -22,15 +23,15 @@ class IconBtnWithCounter extends StatelessWidget {
         Get.find<CartController>(); // Access CartController
 
     return InkWell(
-      borderRadius: BorderRadius.circular(100),
+      borderRadius: BorderRadius.circular(100.r),
       onTap: press,
       child: Stack(
         clipBehavior: Clip.none,
         children: [
           Container(
-            padding: const EdgeInsets.all(12),
-            height: 46,
-            width: 46,
+            padding: EdgeInsets.all(12.w),
+            height: 46.h,
+            width: 46.w,
             decoration: BoxDecoration(
               color: kSecondaryColor.withOpacity(0.1),
               shape: BoxShape.circle,
@@ -41,21 +42,21 @@ class IconBtnWithCounter extends StatelessWidget {
             Obx(
               () => cartController.getItemCount() != 0
                   ? Positioned(
-                      top: -3,
-                      right: 0,
+                      top: -3.h,
+                      right: 0.w,
                       child: Container(
-                        height: 20,
-                        width: 20,
+                        height: 20.h,
+                        width: 20.w,
                         decoration: BoxDecoration(
                           color: const Color(0xFFFF4848),
                           shape: BoxShape.circle,
-                          border: Border.all(width: 1.5, color: Colors.white),
+                          border: Border.all(width: 1.5.w, color: Colors.white),
                         ),
                         child: Center(
                           child: Text(
                             "${cartController.getItemCount()}",
-                            style: const TextStyle(
-                              fontSize: 12,
+                            style: TextStyle(
+                              fontSize: 12.sp,
                               height: 1,
                               fontWeight: FontWeight.w600,
                               color: Colors.white,
@@ -68,21 +69,21 @@ class IconBtnWithCounter extends StatelessWidget {
             )
           else if (numOfitem != 0) // For non-cart icons (e.g., notifications)
             Positioned(
-              top: -3,
-              right: 0,
+              top: -3.h,
+              right: 0.w,
               child: Container(
-                height: 20,
-                width: 20,
+                height: 20.h,
+                width: 20.w,
                 decoration: BoxDecoration(
                   color: const Color(0xFFFF4848),
                   shape: BoxShape.circle,
-                  border: Border.all(width: 1.5, color: Colors.white),
+                  border: Border.all(width: 1.5.w, color: Colors.white),
                 ),
                 child: Center(
                   child: Text(
                     "$numOfitem",
-                    style: const TextStyle(
-                      fontSize: 12,
+                    style: TextStyle(
+                      fontSize: 12.sp,
                       height: 1,
                       fontWeight: FontWeight.w600,
                       color: Colors.white,

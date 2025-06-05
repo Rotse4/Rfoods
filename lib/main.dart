@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:r4foods/controllers/rating_controller.dart';
 
 import 'controllers/auth_controller.dart';
 import 'controllers/cart_controller.dart';
 import 'controllers/product_controller.dart';
+import 'controllers/rating_controller.dart';
 import 'routes/routes.dart';
 import 'screens/splash/splash_screen.dart';
 import 'theme/theme.dart';
@@ -14,6 +16,7 @@ void main() {
   Get.put(ProductController());
   Get.put(CartController());
   Get.put(AuthController());
+  Get.put(RatingController());
   runApp(const MyApp());
 }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart'; // Import GetX
+import 'package:flutter_screenutil/flutter_screenutil.dart'; // Import flutter_screenutil
 import '../utils/constants.dart';
 import '../models/Product.dart';
 import '../controllers/product_controller.dart'; // Import controller
@@ -24,7 +25,7 @@ class ProductCard extends StatelessWidget {
         Get.find<ProductController>(); // Access controller
 
     return SizedBox(
-      width: width,
+      width: width.w, // Apply .w for responsive width
       child: GestureDetector(
         onTap: onPress,
         child: Column(
@@ -33,15 +34,15 @@ class ProductCard extends StatelessWidget {
             AspectRatio(
               aspectRatio: 1.02,
               child: Container(
-                padding: const EdgeInsets.all(20),
+                padding: EdgeInsets.all(20.w), // Apply .w for responsive padding
                 decoration: BoxDecoration(
                   color: kSecondaryColor.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(12.r), // Apply .r for responsive border radius
                 ),
                 child: Image.asset(product.images[0]),
               ),
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: 8.h), // Apply .h for responsive height
             Text(
               product.title,
               style: Theme.of(context).textTheme.bodyMedium,
@@ -52,8 +53,8 @@ class ProductCard extends StatelessWidget {
               children: [
                 Text(
                   "\$${product.price}",
-                  style: const TextStyle(
-                    fontSize: 14,
+                  style: TextStyle(
+                    fontSize: 14.sp, // Apply .sp for responsive font size
                     fontWeight: FontWeight.w600,
                     color: kPrimaryColor,
                   ),
@@ -61,14 +62,14 @@ class ProductCard extends StatelessWidget {
                 Obx(
                   () => InkWell(
                     // Use Obx for reactive UI
-                    borderRadius: BorderRadius.circular(50),
+                    borderRadius: BorderRadius.circular(50.r), // Apply .r for responsive border radius
                     onTap: () => controller.toggleFavorite(
                       product.id,
                     ), // Toggle favorite
                     child: Container(
-                      padding: const EdgeInsets.all(6),
-                      height: 24,
-                      width: 24,
+                      padding: EdgeInsets.all(6.w), // Apply .w for responsive padding
+                      height: 24.h, // Apply .h for responsive height
+                      width: 24.w, // Apply .w for responsive width
                       decoration: BoxDecoration(
                         color:
                             controller.products

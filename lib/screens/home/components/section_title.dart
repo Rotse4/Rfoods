@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SectionTitle extends StatelessWidget {
   const SectionTitle({Key? key, required this.title, required this.press})
@@ -14,8 +15,8 @@ class SectionTitle extends StatelessWidget {
       children: [
         Text(
           title,
-          style: const TextStyle(
-            fontSize: 16,
+          style: TextStyle(
+            fontSize: 16.sp,
             fontWeight: FontWeight.w600,
             color: Colors.black,
           ),

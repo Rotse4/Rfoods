@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart'; // Import GetX
-import '../../controllers/cart_controller.dart'; // Import CartController
+import 'package:get/get.dart';
+import '../../controllers/cart_controller.dart';
+import '../../controllers/rating_controller.dart';
 import '../../screens/cart/cart_screen.dart';
 import '../../models/Product.dart';
 import 'components/color_dots.dart';
 import 'components/product_description.dart';
 import 'components/product_images.dart';
 import 'components/top_rounded_container.dart';
+import 'components/rating_summary.dart';
+import 'components/reviews_list.dart';
 
 class DetailsScreen extends StatelessWidget {
   static String routeName = "/details";
@@ -17,10 +20,10 @@ class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ProductDetailsArguments args =
-        Get.arguments as ProductDetailsArguments; // Use Get.arguments
+        Get.arguments as ProductDetailsArguments;
     final product = args.product;
-    final CartController cartController =
-        Get.find<CartController>(); // Access CartController
+    final CartController cartController = Get.find<CartController>();
+    final RatingController ratingController = Get.find<RatingController>();
 
     return Scaffold(
       extendBody: true,
@@ -33,7 +36,7 @@ class DetailsScreen extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: ElevatedButton(
             onPressed: () {
-              Get.back(); // Use GetX navigation
+              Get.back();
             },
             style: ElevatedButton.styleFrom(
               shape: const CircleBorder(),
@@ -48,37 +51,6 @@ class DetailsScreen extends StatelessWidget {
             ),
           ),
         ),
-        actions: [
-          Row(
-            children: [
-              Container(
-                margin: const EdgeInsets.only(right: 20),
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 4,
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(14),
-                ),
-                child: Row(
-                  children: [
-                    const Text(
-                      "4.7",
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(width: 4),
-                    SvgPicture.asset("assets/icons/Star Icon.svg"),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ],
       ),
       body: ListView(
         children: [
@@ -88,6 +60,21 @@ class DetailsScreen extends StatelessWidget {
             child: Column(
               children: [
                 ProductDescription(product: product, pressOnSeeMore: () {}),
+                
+                // Add Rating Summary
+                const SizedBox(height: 20),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: RatingSummary(product: product),
+                ),
+                
+                // Add Reviews List
+                const SizedBox(height: 20),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: ReviewsList(product: product),
+                ),
+                
                 TopRoundedContainer(
                   color: const Color(0xFFF6F7F9),
                   child: Column(children: [ColorDots(product: product)]),
@@ -104,8 +91,8 @@ class DetailsScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
             child: ElevatedButton(
               onPressed: () {
-                cartController.addToCart(product); // Add to cart
-                Get.toNamed(CartScreen.routeName); // Use GetX navigation
+                cartController.addToCart(product);
+                Get.toNamed(CartScreen.routeName);
               },
               child: const Text("Add To Cart"),
             ),

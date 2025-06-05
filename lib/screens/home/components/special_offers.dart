@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart'; // Import GetX
+import 'package:flutter_screenutil/flutter_screenutil.dart'; // Import flutter_screenutil
 import '../../products/products_screen.dart';
 import 'section_title.dart';
 
@@ -11,7 +12,7 @@ class SpecialOffers extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: 20.w), // Apply .w for responsive horizontal padding
           child: SectionTitle(title: "Special for you", press: () {}),
         ),
         SingleChildScrollView(
@@ -34,7 +35,7 @@ class SpecialOffers extends StatelessWidget {
                   Get.toNamed(ProductsScreen.routeName); // Use GetX navigation
                 },
               ),
-              const SizedBox(width: 20),
+              SizedBox(width: 20.w), // Apply .w for responsive width
             ],
           ),
         ),
@@ -59,14 +60,14 @@ class SpecialOfferCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 20),
+      padding: EdgeInsets.only(left: 20.w), // Apply .w for responsive left padding
       child: GestureDetector(
         onTap: press,
         child: SizedBox(
-          width: 242,
-          height: 100,
+          width: 242.w, // Apply .w for responsive width
+          height: 100.h, // Apply .h for responsive height
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(20.r), // Apply .r for responsive border radius
             child: Stack(
               children: [
                 Image.asset(image, fit: BoxFit.cover),
@@ -85,9 +86,9 @@ class SpecialOfferCard extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 15,
-                    vertical: 10,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 15.w, // Apply .w for responsive horizontal padding
+                    vertical: 10.h, // Apply .h for responsive vertical padding
                   ),
                   child: Text.rich(
                     TextSpan(
@@ -95,8 +96,8 @@ class SpecialOfferCard extends StatelessWidget {
                       children: [
                         TextSpan(
                           text: "$category\n",
-                          style: const TextStyle(
-                            fontSize: 18,
+                          style: TextStyle(
+                            fontSize: 18.sp, // Apply .sp for responsive font size
                             fontWeight: FontWeight.bold,
                           ),
                         ),
