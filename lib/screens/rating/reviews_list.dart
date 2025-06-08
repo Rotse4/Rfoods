@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../controllers/rating_controller.dart';
 import '../../../models/Product.dart';
 import 'rating_stars.dart';
@@ -22,10 +23,10 @@ class ReviewsList extends StatelessWidget {
         }
 
         return Container(
-          padding: const EdgeInsets.all(16),
+          padding: EdgeInsets.all(16.w),
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(12.r),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,6 +38,7 @@ class ReviewsList extends StatelessWidget {
                     'Reviews (${reviews.length})',
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
+                      fontSize: 18.sp,
                     ),
                   ),
                   if (reviews.length > 3)
@@ -45,19 +47,19 @@ class ReviewsList extends StatelessWidget {
                         // Navigate to full reviews screen
                         // You can implement this later
                       },
-                      child: const Text('View All'),
+                      child: Text('View All', style: TextStyle(fontSize: 14.sp)),
                     ),
                 ],
               ),
               
-              const SizedBox(height: 12),
+              SizedBox(height: 12.h),
               
               ...reviews.take(3).map((review) => Container(
-                margin: const EdgeInsets.only(bottom: 16),
-                padding: const EdgeInsets.all(12),
+                margin: EdgeInsets.only(bottom: 16.h),
+                padding: EdgeInsets.all(12.w),
                 decoration: BoxDecoration(
                   color: Colors.grey[50],
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(8.r),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,17 +67,17 @@ class ReviewsList extends StatelessWidget {
                     Row(
                       children: [
                         CircleAvatar(
-                          radius: 16,
+                          radius: 16.r,
                           backgroundColor: Colors.grey[300],
                           child: Text(
                             review.userName[0].toUpperCase(),
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 14,
+                              fontSize: 14.sp,
                             ),
                           ),
                         ),
-                        const SizedBox(width: 8),
+                        SizedBox(width: 8.w),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -84,16 +86,18 @@ class ReviewsList extends StatelessWidget {
                                 review.userName,
                                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                   fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
                                 ),
                               ),
                               Row(
                                 children: [
-                                  RatingStars(rating: review.rating, size: 14),
-                                  const SizedBox(width: 8),
+                                  RatingStars(rating: review.rating, size: 14.sp),
+                                  SizedBox(width: 8.w),
                                   Text(
                                     _formatDate(review.createdAt),
                                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                                       color: Colors.grey[600],
+                                      fontSize: 12.sp,
                                     ),
                                   ),
                                 ],
@@ -105,10 +109,10 @@ class ReviewsList extends StatelessWidget {
                     ),
                     
                     if (review.comment.isNotEmpty) ...[
-                      const SizedBox(height: 8),
+                      SizedBox(height: 8.h),
                       Text(
                         review.comment,
-                        style: Theme.of(context).textTheme.bodyMedium,
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 14.sp),
                       ),
                     ],
                   ],

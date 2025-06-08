@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import '../models/Product.dart';
+import '../utils/currency_formatter.dart';
 
 class CartController extends GetxController {
   var cartItems = <Product, int>{}.obs; // Map of Product to quantity
@@ -18,6 +19,16 @@ class CartController extends GetxController {
     cartItems.refresh();
   }
 
+  void updateQuantity(Product product, int newQuantity) {
+    if (newQuantity > 0) {
+      cartItems[product] = newQuantity;
+    } else {
+      removeFromCart(product);
+    }
+    cartItems.refresh();
+  }
+  
+
   int getItemCount() {
     return cartItems.values.fold(0, (sum, qty) => sum + qty);
   }
@@ -25,7 +36,11 @@ class CartController extends GetxController {
   double getTotalPrice() {
     return cartItems.entries.fold(
       0.0,
-      (sum, entry) => sum + entry.key.price * entry.value,
+      (sum, entry) => sum + (entry.key.price * entry.value),
     );
+  }
+
+  String getFormattedTotal() {
+    return CurrencyFormatter.formatKES(getTotalPrice());
   }
 }

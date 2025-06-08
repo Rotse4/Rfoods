@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart'; // Import flutter_s
 import '../utils/constants.dart';
 import '../models/Product.dart';
 import '../controllers/product_controller.dart'; // Import controller
+import '../utils/currency_formatter.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({
@@ -52,11 +53,11 @@ class ProductCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "\$${product.price}",
+                  CurrencyFormatter.formatKES(product.price),
                   style: TextStyle(
-                    fontSize: 14.sp, // Apply .sp for responsive font size
+                    fontSize: 16.sp,
                     fontWeight: FontWeight.w600,
-                    color: kPrimaryColor,
+                    color: Colors.black,
                   ),
                 ),
                 Obx(

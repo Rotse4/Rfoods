@@ -5,7 +5,8 @@ import '../../controllers/cart_controller.dart';
 import '../../controllers/rating_controller.dart';
 import '../../screens/cart/cart_screen.dart';
 import '../../models/Product.dart';
-import 'components/color_dots.dart';
+import '../../utils/constants.dart';
+import '../../utils/currency_formatter.dart';
 import 'components/product_description.dart';
 import 'components/product_images.dart';
 import 'components/top_rounded_container.dart';
@@ -19,11 +20,21 @@ class DetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ProductDetailsArguments args =
-        Get.arguments as ProductDetailsArguments;
+    final args = Get.arguments;
+    if (args == null || args is! ProductDetailsArguments) {
+      return Scaffold(
+        appBar: AppBar(
+          title: const Text("Error"),
+        ),
+        body: const Center(
+          child: Text("Invalid product details"),
+        ),
+      );
+    }
     final product = args.product;
     final CartController cartController = Get.find<CartController>();
     final RatingController ratingController = Get.find<RatingController>();
+    final quantity = 1.obs;
 
     return Scaffold(
       extendBody: true,
@@ -68,16 +79,35 @@ class DetailsScreen extends StatelessWidget {
                   child: RatingSummary(product: product),
                 ),
                 
-                // Add Reviews List
                 const SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: ReviewsList(product: product),
                 ),
                 
-                TopRoundedContainer(
-                  color: const Color(0xFFF6F7F9),
-                  child: Column(children: [ColorDots(product: product)]),
+                // Price Display
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  child: Row(
+                    children: [
+                      const Text(
+                        "Price:",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const Spacer(),
+                      Text(
+                        CurrencyFormatter.formatKES(product.price),
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: kPrimaryColor,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

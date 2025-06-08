@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RatingStars extends StatelessWidget {
   final double rating;
@@ -10,7 +11,7 @@ class RatingStars extends StatelessWidget {
   const RatingStars({
     Key? key,
     required this.rating,
-    this.size = 16,
+    this.size = 16.sp,
     this.activeColor = Colors.amber,
     this.inactiveColor = Colors.grey,
     this.allowHalfRating = true,

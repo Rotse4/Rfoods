@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class InteractiveRating extends StatefulWidget {
   final Function(double) onRatingChanged;
@@ -9,7 +10,7 @@ class InteractiveRating extends StatefulWidget {
     Key? key,
     required this.onRatingChanged,
     this.initialRating = 0,
-    this.size = 32,
+    this.size = 32.sp,
   }) : super(key: key);
 
   @override
@@ -38,7 +39,7 @@ class _InteractiveRatingState extends State<InteractiveRating> {
             widget.onRatingChanged(currentRating);
           },
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 2),
+            padding: EdgeInsets.symmetric(horizontal: 2.w),
             child: Icon(
               index < currentRating ? Icons.star : Icons.star_border,
               size: widget.size,

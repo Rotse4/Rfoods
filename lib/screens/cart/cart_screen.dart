@@ -5,6 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart'; // Import flutter_s
 import '../../controllers/cart_controller.dart'; // Import CartController
 import 'components/cart_card.dart';
 import 'components/check_out_card.dart';
+import '../../models/Product.dart';
+import '../../utils/currency_formatter.dart';
 
 class CartScreen extends StatelessWidget {
   static String routeName = "/cart";
@@ -30,49 +32,111 @@ class CartScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Obx(
-        () => Padding(
+      body: Obx(() {
+        if (cartController.cartItems.isEmpty) {
+          return const Center(
+            child: Text("Your cart is empty"),
+          );
+        }
+
+        return Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w),
-          child: cartController.cartItems.isEmpty
-              ? const Center(child: Text("Your cart is empty"))
-              : ListView.builder(
-                  itemCount: cartController.cartItems.length,
-                  itemBuilder: (context, index) {
-                    final product = cartController.cartItems.keys.elementAt(
-                      index,
-                    );
-                    final quantity = cartController.cartItems[product]!;
-                    return Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10.h),
-                      child: Dismissible(
-                        key: Key(product.id.toString()),
-                        direction: DismissDirection.endToStart,
-                        onDismissed: (direction) {
-                          cartController.removeFromCart(
-                            product,
-                          ); // Remove using controller
-                        },
-                        background: Container(
-                          padding: EdgeInsets.symmetric(horizontal: 20.w),
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFFFE6E6),
-                            borderRadius: BorderRadius.circular(15.r),
-                          ),
-                          child: Row(
-                            children: [
-                              const Spacer(),
-                              SvgPicture.asset("assets/icons/Trash.svg"),
-                            ],
-                          ),
-                        ),
-                        child: CartCard(product: product, quantity: quantity),
-                      ),
-                    );
+          child: ListView.builder(
+            itemCount: cartController.cartItems.length,
+            itemBuilder: (context, index) {
+              final entry = cartController.cartItems.entries.elementAt(index);
+              return Padding(
+                padding: EdgeInsets.symmetric(vertical: 10.h),
+                child: Dismissible(
+                  key: Key(entry.key.id.toString()),
+                  direction: DismissDirection.endToStart,
+                  onDismissed: (direction) {
+                    cartController.removeFromCart(entry.key);
                   },
+                  background: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20.w),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFFFE6E6),
+                      borderRadius: BorderRadius.circular(15.r),
+                    ),
+                    alignment: Alignment.centerRight,
+                    child: const Icon(
+                      Icons.delete,
+                      color: Color(0xFFFF4848),
+                    ),
+                  ),
+                  child: CartCard(
+                    product: entry.key,
+                    quantity: entry.value,
+                  ),
                 ),
-        ),
-      ),
-      bottomNavigationBar: const CheckoutCard(),
+              );
+            },
+          ),
+        );
+      }),
+      bottomNavigationBar: Obx(() {
+        if (cartController.cartItems.isEmpty) {
+          return const SizedBox.shrink();
+        }
+
+        return Container(
+          padding: EdgeInsets.symmetric(
+            horizontal: 20.w,
+            vertical: 15.h,
+          ),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(40.r),
+              topRight: Radius.circular(40.r),
+            ),
+            boxShadow: [
+              BoxShadow(
+                offset: const Offset(0, -15),
+                blurRadius: 20,
+                color: const Color(0xFFDADADA).withOpacity(0.15),
+              ),
+            ],
+          ),
+          child: SafeArea(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text.rich(
+                      TextSpan(
+                        text: "Total:\n",
+                        children: [
+                          TextSpan(
+                            text: cartController.getFormattedTotal(),
+                            style: const TextStyle(
+                              fontSize: 16,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      width: 190.w,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          // TODO: Implement checkout
+                        },
+                        child: const Text("Check Out"),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      }),
     );
   }
 }
